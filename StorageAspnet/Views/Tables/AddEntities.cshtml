@@ -1,0 +1,23 @@
+﻿
+@model IEnumerable<Microsoft.WindowsAzure.Storage.Table.TableResult>
+@{
+    ViewBag.Title = "AddEntities";
+}
+
+<h2>Add-entities results</h2>
+
+<table border="1">
+    <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>HTTP result</th>
+    </tr>
+    @foreach (var result in Model)
+    {
+        <tr>
+            <td>@((result.Result as StorageAspnet.Models.CustomerEntity).RowKey)</td>
+            <td>@((result.Result as StorageAspnet.Models.CustomerEntity).PartitionKey)</td>
+            <td>@result.HttpStatusCode</td>
+        </tr>
+    }
+</table>
